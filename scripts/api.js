@@ -10,8 +10,13 @@ const API = (function () {
     }
   };
 
-  const getImage = function(){
-
+  const getImage = function(searchTerm, callback){
+    const imageSettings = {
+      tags: searchTerm,
+      tagmode: "any",
+      format: "json"
+    };
+    $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?", imageSettings, callback);
   };
 
   const getYoutube = function(searchTerm, callback){
@@ -19,21 +24,20 @@ const API = (function () {
       part: 'snippet',
       q: searchTerm,
       key: youtube_Key,
+      pageToken: store.youtubeData.pageToken,
       maxResults: 1,
       order: 'viewCount',
-      pageToken: store.pageToken,
       videoEmbeddable: true,
       type: 'video'
     };
     console.log(settings.pageToken);
     if($('.js-more').attr('data-id') == "0"){
-      settings.pageToken = store.defaultToken;
-      console.log('token is undefined');
+      settings.pageToken = store.youtubeData.defaultToken;
     }
     else if ($('.js-more').attr('data-id') == "1"){
-      settings.pageToken = store.nextPageToken;
+      settings.pageToken = store.youtubeData.nextPageToken;
     } else {
-      settings.pageToken = store.prevPageToken;
+      settings.pageToken = store.youtubeData.prevPageToken;
     }
       $.getJSON(endpoint, settings, callback);
     console.log(settings);

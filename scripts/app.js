@@ -5,15 +5,15 @@
 const app = (function(){
 
   function handleNewItemSubmit(){
-    $('form').on('click', 'button', event => {
+    $('form').on('click', '.submit', event => {
       console.log('listening');
       event.preventDefault();
       let hold = $('.js-query').val();
-      store.prevPageToken = undefined;
-      store.pageToken = undefined;
+      store.youtubeData.prevPageToken = undefined;
+      store.youtubeData.pageToken = undefined;
       $('.js-more').attr('data-id', 0);
       API.getYoutube(hold, response => {
-        store.nextPageToken = response.nextPageToken;
+        store.youtubeData.nextPageToken = response.nextPageToken;
         const decoratedVideos = generateYoutubeItemString(response);
         addVideosToStore(decoratedVideos);
         displayResults();
@@ -54,9 +54,44 @@ const app = (function(){
     `;
   };
 
-  function handleExpand(){
-
+  function handleMoreClick(){
+    $('.js-search-form').on('click', '.js-more', function(event){
+      event.preventDefault();
+      console.log('hello');
+      let hold = $('.js-query').val();
+      let data = $('.js-more').data('id');
+        data++;
+        $(this).attr('data-id', data);
+      API.getYoutube(hold, response => {
+        store.youtubeData.pageToken = store.youtubeData.nextPageToken;
+        store.youtubeData.prevPageToken = response.prevPageToken;
+        store.youtubeData.nextPageToken = response.nextPageToken;
+        const decoratedVideos = generateYoutubeItemString(response);
+        addVideosToStore(decoratedVideos);
+        displayResults();
+  
+      });
+    });
   }
+
+    function handleFewerClick(){
+    $('.js-search-form').on('click', '.js-fewer', function(event){
+      event.preventDefault();
+      console.log('listening');
+      let hold = $('.js-query').val();
+      let data = $('.js-more').data('id');
+        data--;
+        $('.js-more').attr('data-id', data);
+      API.getYoutube(hold, response => {
+        store.youtubeData.pageToken = store.youtubeData.nextPageToken;
+        store.youtubeData.prevPageToken = response.prevPageToken;
+        store.youtubeData.nextPageToken = response.nextPageToken;
+        const decoratedVideos = generateYoutubeItemString(response);
+        addVideosToStore(decoratedVideos);
+        displayResults();
+      });
+    });
+  };
 
   function render(){
 
@@ -71,6 +106,8 @@ const app = (function(){
   
   function bindEventListeners(){
     handleNewItemSubmit();
+    handleMoreClick();
+    handleFewerClick();
   }
   
 

@@ -15,12 +15,12 @@
      <form action="#" class="js-search-form">
       <label for="query"></label>
       <input type="text" class="js-query" value="The Doors" required>
-      <button type="submit">Search</button>
+      <button type="submit" class="submit">Search</button>
+      <button type="button" class="js-fewer">Prev Video</button>
+      <button type="button" class="js-more" data-id="0">Next Video</button>
      </form>
      <section class="container">
        <div id="youtube"><p>Lorem ipsum dolor sit amet consectetur adi!</p>
-        <button type="button" class="js-fewer">Prev Video</button>
-        <button type="button" class="js-more" data-id="0">Next Video</button>
       </div>
        <div id="reddit">Lorem ipsum dolor sit amet consectetur adi!</div>
        <div id="twitter">Lorem ipsum dolor sit amet consectetur adi!</div>
@@ -41,8 +41,9 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  <script src="scripts/api.js"></script>
   <script src="scripts/store.js"></script>
+  <script src="scripts/api.js"></script>
+  
   <script src="scripts/app.js"></script>
   <script src="scripts/index.js"></script>
 </body>
