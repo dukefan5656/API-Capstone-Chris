@@ -4,12 +4,31 @@
   box-sizing: border-box;
 }
 
+.banner {
+height: 200px; 
+width: 100%;
+overflow: hidden; 
+}
+
 .container {
   display: flex;
   height: 500px;
   background-color: #ccc;
   flex-flow: row wrap;
   justify-content: space-evenly;
+}
+
+ul {
+  list-style: none;
+  width: 10000px;
+}
+
+img {
+  height: 200px;
+  max-width: 25%;
+  overflow: hidden;
+  float: left;
+  flex-wrap: nowrap;
 }
 
 #reddit {

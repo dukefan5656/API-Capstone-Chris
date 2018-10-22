@@ -4,6 +4,7 @@ const store = (function(){
   
   
   return {
+    redditData: [],
     youtubeData: {
       videos: [],
       defaultToken: undefined,
