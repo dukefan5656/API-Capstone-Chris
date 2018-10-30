@@ -2,6 +2,27 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-align: center;
+}
+
+.js-search-form { 
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.js-query {
+  text-align: left;
+}
+
+h1 {
+  color: gray;
+  font-size: 120px;
+  height: 90%; 
+  width:100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .banner {
@@ -16,8 +37,30 @@ overflow: hidden;
   border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
-  text-align: center;
+  /* text-align: center; */
   padding: 10px;
+}
+
+.card-body {
+  margin: auto;
+  top: 50%;
+  left: 50%;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.btn-primary {
+  margin: auto;
+  top: 50%;
+  left: 50%;
+}
+
+.youtube-video {
+  margin: auto;
+  top: 50%;
+  left: 50%;
 }
 
 .button-holder {
@@ -28,22 +71,35 @@ h3 {
   margin: 0 auto;
 }
 
+
 .youtube-container {
   display: flex;
   flex-wrap: wrap;
   text-align: center;
 }
 
+.youtube-container p {
+  margin-top: 20px;
+}
+
+a {
+  text-align: center;
+  margin: 20px auto;
+}
+
 .container {
   display: flex;
   height: 500px;
-  background-color: #ccc;
+  
   flex-flow: row wrap;
   
 }
 
 .card-img-top {
   height: 100px;
+  margin: auto;
+  top: 50%;
+  left: 50%;
 }
 
 ul {
@@ -66,19 +122,22 @@ li {
 #reddit {
   flex: 1;
   order: 1;
-  border: 1px solid black;
+}
+
+footer {
+  margin-top: 50px;
 }
 
 #youtube {
   flex: 3;
   order: 2;
-  border: 1px solid red;
+  
 }
 
 #wiki {
   flex: 1;
   order: 3;
-  border: 1px solid blue;
+  
 }
 
 #descriptions{

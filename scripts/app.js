@@ -110,7 +110,7 @@ const app = (function(){
   const renderResults = function(video) {
     return `<section class="youtube-container" data-id="${video.id}">
               <h3>${video.title}</h3>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/${video.id}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+              <iframe width="560" height="315" class="youtube-video" src="https://www.youtube.com/embed/${video.id}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
               <p>${video.description}</p>
               <a href="https://www.youtube.com/channel/${video.channelId}">Follow Link to Channel</a>
             </section>
