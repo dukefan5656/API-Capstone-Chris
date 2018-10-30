@@ -5,9 +5,33 @@
 }
 
 .banner {
+max-width: 100%;
+background-color: steelblue;
 height: 200px; 
 width: 100%;
 overflow: hidden; 
+}
+
+.card {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  padding: 10px;
+}
+
+.button-holder {
+  text-align: center;
+}
+
+h3 {
+  margin: 0 auto;
+}
+
+.youtube-container {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
 .container {
@@ -15,7 +39,11 @@ overflow: hidden;
   height: 500px;
   background-color: #ccc;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  
+}
+
+.card-img-top {
+  height: 100px;
 }
 
 ul {
@@ -23,7 +51,11 @@ ul {
   width: 10000px;
 }
 
-img {
+li {
+  list-style: none;
+}
+
+.banner img {
   height: 200px;
   max-width: 25%;
   overflow: hidden;
@@ -43,12 +75,12 @@ img {
   border: 1px solid red;
 }
 
-#twitter {
+#wiki {
   flex: 1;
   order: 3;
   border: 1px solid blue;
 }
 
-#wiki{
+#descriptions{
   border: 1px solid yellow;
 }

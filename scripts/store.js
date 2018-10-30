@@ -1,10 +1,9 @@
 'use strict';
 
 const store = (function(){
-  
-  
   return {
     redditData: [],
+    wikiData: [],
     youtubeData: {
       videos: [],
       defaultToken: undefined,

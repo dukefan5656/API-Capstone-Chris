@@ -10,11 +10,15 @@ const app = (function(){
       let hold = $('.js-query').val();
       store.youtubeData.prevPageToken = undefined;
       store.youtubeData.pageToken = undefined;
-      $(".slides").html("");
+      $('.slides').html('');
       $('.js-more').attr('data-id', 0);
 
+      API.getWiki(hold, response => {
+        addWikiToStore(response);
+        renderWiki();
+      });
+
       API.getReddit(hold, response => {
-        console.log(response);
         generateRedditItemString(response);
         const decoratedReddit = generateRedditItemString(response);
         addRedditToStore(decoratedReddit);
@@ -30,10 +34,9 @@ const app = (function(){
       });
       API.getImage(hold, response =>{
         let image = response.link;
-        console.log(image);
         $.each(response.items, function (i, item) {
-          $("<img>").attr("src", item.media.m).appendTo(".slides");
-          if (i === 10) {
+          $('<img>').attr('src', item.media.m).appendTo('.slides');
+          if (i === 7) {
             return false;
           }
           // startSlider();
@@ -60,14 +63,17 @@ const app = (function(){
     store.redditData = items;
   }
 
+  function addWikiToStore(wikiItems) {
+    store.wikiData = wikiItems;
+  }
+
   function generateRedditItemString(response) {
-    console.log(response.data.children[0].data.preview.images[0].source.url);
     return response.data.children.map(item => {
       return {
         title: item.data.title,
         url: item.data.url,
         description: item.data.selftext,
-        image: item.data.preview.images
+        image: item.data.preview.images[0].source.url
       };
     });
   }
@@ -85,8 +91,8 @@ const app = (function(){
   }
 
   const renderReddit = function(post){
-    return `<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="" alt="Card image cap">
+    return `<div class="card mb-2">
+    <img class="card-img-top" src="${post.image}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">${post.title}</h5>
       <a href="${post.url}" class="btn btn-primary">Go to Reddit</a>
@@ -94,18 +100,27 @@ const app = (function(){
   </div>`;
   };
 
+  const renderWiki = function(){
+    const wikiDisplay = `<li>${store.wikiData[1]}</li>
+            <p>${store.wikiData[2]}</p>
+            <a href=${store.wikiData[3]}>Follow Link to Wiki Page</a>`;
+    $('#wiki').html(wikiDisplay);
+  };
+
   const renderResults = function(video) {
-    return `<li data-id="${video.id}">
+    return `<section class="youtube-container" data-id="${video.id}">
               <h3>${video.title}</h3>
               <iframe width="560" height="315" src="https://www.youtube.com/embed/${video.id}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
               <p>${video.description}</p>
               <a href="https://www.youtube.com/channel/${video.channelId}">Follow Link to Channel</a>
-            </li>
+            </section>
+            <button type="button" class="js-fewer">Prev Video</button>
+            <button type="button" class="js-more" data-id="0">Next Video</button>
     `;
   };
 
   function handleMoreClick(){
-    $('.js-search-form').on('click', '.js-more', function(event){
+    $('#youtube').on('click', '.js-more', function(event){
       event.preventDefault();
       console.log('hello');
       let hold = $('.js-query').val();
@@ -125,30 +140,35 @@ const app = (function(){
   }
 
   function handleFewerClick(){
-    $('.js-search-form').on('click', '.js-fewer', function(event){
+    $('#youtube').on('click', '.js-fewer', function(event){
+      
       event.preventDefault();
-      console.log('listening');
-      let hold = $('.js-query').val();
-      let data = $('.js-more').data('id');
-      data--;
-      $('.js-more').attr('data-id', data);
-      API.getYoutube(hold, response => {
-        store.youtubeData.pageToken = store.youtubeData.nextPageToken;
-        store.youtubeData.prevPageToken = response.prevPageToken;
-        store.youtubeData.nextPageToken = response.nextPageToken;
-        const decoratedVideos = generateYoutubeItemString(response);
-        addVideosToStore(decoratedVideos);
-        displayResults();
-      });
+      // if($(this).attr('data-id') == '0'){
+      //   $('.enableOnInput').prop('disabled', true);
+      // } else { 
+        let hold = $('.js-query').val();
+        let data = $('.js-more').data('id');
+        data--;
+        $('.js-more').attr('data-id', data);
+        API.getYoutube(hold, response => {
+          store.youtubeData.pageToken = store.youtubeData.nextPageToken;
+          store.youtubeData.prevPageToken = response.prevPageToken;
+          store.youtubeData.nextPageToken = response.nextPageToken;
+          const decoratedVideos = generateYoutubeItemString(response);
+          addVideosToStore(decoratedVideos);
+          displayResults();
+        });
+      // }
     });
   }
+  
 
-  function onLoad(){
-    API.getItems(response => {
-      store.initializeStore(response);
+  // function onLoad(){
+  //   API.getItems(response => {
+  //     store.initializeStore(response);
      
-    });
-  }
+  //   });
+  // }
   
   function bindEventListeners(){
     handleNewItemSubmit();
@@ -163,7 +183,6 @@ const app = (function(){
     let currentSlide = 1;
     setInterval(function() {
       $('.slides').animate({'margin-left': '-='+width}, animationSpeed, function() {
-        console.log(currentSlide);
         if (currentSlide === $('.slide').length) {
           currentSlide = 1;
           $('.slides').css('margin-left', 0);
@@ -171,9 +190,9 @@ const app = (function(){
       });
     }, 0);
   }
+
   return {
- 
-    onLoad: onLoad,
+    // onLoad: onLoad,
     bindEventListeners: bindEventListeners
   };
 

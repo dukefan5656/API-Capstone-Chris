@@ -5,16 +5,26 @@ const API = (function () {
   const youtube_Key = 'AIzaSyBhyLNH7AaEkj0c6aE5FB8NMrirtnyWNhg';
   let youtubeEndpoint = 'https://www.googleapis.com/youtube/v3/search';
   let flickrEndpoint = 'http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
-  let redditEndpoint = 'http://www.reddit.com/search.json?';
-  
+  let redditEndpoint = 'http://www.reddit.com/r/all/search.json?';
+  let wikiEnpoint = 'https://www.wikipedia.org/w/api.php?callback=?';
+
+  const getWiki = function(searchTerm, callback) {
+   const wikiSettings = {
+     action: 'opensearch',
+     format: 'json',
+    limit: 1,
+    search: searchTerm
+   }
+    $.getJSON(wikiEnpoint, wikiSettings, callback);
+  };
+
   const getReddit = function(searchTerm, callback){
     const redSettings = {
       q: searchTerm,
-      limit: 1,
-      sort: 'relevance',
+      limit: 2,
+      sort: 'hot',
       t: 'all'
     };
-    console.log(redSettings);
     $.getJSON(redditEndpoint, redSettings, callback);
   };
 
@@ -50,13 +60,6 @@ const API = (function () {
     $.getJSON(youtubeEndpoint, settings, callback);
   };
 
-  const getWiki = function(){
-
-  };
-
-  const getTwitter = function(){
-  
-  };
 
 
   return{
@@ -64,6 +67,5 @@ const API = (function () {
     getImage,
     getYoutube,
     getWiki,
-    getTwitter
   };
 })();
