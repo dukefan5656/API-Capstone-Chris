@@ -46,15 +46,7 @@ const app = (function(){
     });
   }
 
-  const displayResults = function(){
-    const htmlElements = store.youtubeData.videos.map(item => renderResults(item));
-    $('#youtube').html(htmlElements);
-  };
-
-  const displayReddit = function(){
-    const redditHtml = store.redditData.map(item => renderReddit(item));
-    $('#reddit').html(redditHtml);
-  };
+  //===================================================================================================================
 
   function addVideosToStore(videos) {
     store.youtubeData.videos = videos;
@@ -67,6 +59,8 @@ const app = (function(){
   function addWikiToStore(wikiItems) {
     store.wikiData = wikiItems;
   }
+
+  //===================================================================================================================
 
   function generateRedditItemString(response) {
     return response.data.children.map(item => {
@@ -89,6 +83,8 @@ const app = (function(){
       };  
     });
   }
+
+  //===================================================================================================================
 
   const renderReddit = function(post){
     return `<div class="card mb-2">
@@ -118,6 +114,22 @@ const app = (function(){
             <button type="button" class="js-more" data-id="0">Next Video</button>
     `;
   };
+
+  //===================================================================================================================
+
+  const displayResults = function(){
+    const htmlElements = store.youtubeData.videos.map(item => renderResults(item));
+    $('#youtube').html(htmlElements);
+  };
+
+  const displayReddit = function(){
+    const redditHtml = store.redditData.map(item => renderReddit(item));
+    $('#reddit').html(redditHtml);
+  };
+
+  //===================================================================================================================
+
+
 
   function handleMoreClick(){
     $('#youtube').on('click', '.js-more', function(event){
@@ -160,7 +172,7 @@ const app = (function(){
     });
   }
   
-
+  //===================================================================================================================
 
   
   function bindEventListeners(){
@@ -169,7 +181,8 @@ const app = (function(){
     handleFewerClick();
   }
   
-
+  // this function does work, but I would like to improve it. Will be left in for future application
+  
   // function startSlider() {
   //   let width = 5000;
   //   let animationSpeed = 90000;
@@ -185,7 +198,6 @@ const app = (function(){
   // }
 
   return {
-    // onLoad: onLoad,
     bindEventListeners: bindEventListeners
   };
 
