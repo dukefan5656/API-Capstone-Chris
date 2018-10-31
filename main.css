@@ -131,18 +131,13 @@ button:hover{
   left: 50%;
 }
 
-ul {
-  list-style: none;
-  width: 1000px;
-}
-
-li {
-  list-style: none;
+.banner section { 
+  width: 50000px;
 }
 
 .banner img {
   height: 200px;
-  max-width: 25%;
+  max-width: 50%;
   overflow: hidden;
   float: left;
   flex-wrap: nowrap;

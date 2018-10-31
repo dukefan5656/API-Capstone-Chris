@@ -37,7 +37,7 @@ const app = (function(){
         let image = response.link;
         $.each(response.items, function (i, item) {
           $('<img alt="flikr images">').attr('src', item.media.m).appendTo('.slides');
-          if (i === 7) {
+          if (i === 10) {
             return false;
           }
         });
@@ -182,7 +182,7 @@ const app = (function(){
   }
   
   // this function does work, but I would like to improve it. Will be left in for future application
-  
+
   // function startSlider() {
   //   let width = 5000;
   //   let animationSpeed = 90000;
