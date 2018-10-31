@@ -21,7 +21,7 @@ const API = (function () {
   const getReddit = function(searchTerm, callback){
     const redSettings = {
       q: searchTerm,
-      limit: 1,
+      limit: 5,
       sort: 'hot',
       t: 'all'
     };
