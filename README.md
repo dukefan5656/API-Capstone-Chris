@@ -1,7 +1,5 @@
 One Stop Shop
 
-Link to live site: https://one-stop-shop-app.herokuapp.com/
-
 This app utilizes several web APIs to collect data based on a search topic provided by the user. I made this app to be able to quickly collect
 information from the sites I most commonly go to when searching a topic. 
 
