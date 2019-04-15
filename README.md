@@ -11,13 +11,13 @@ Links on the page are available for each Reddit post, the Wiki page, the Channel
 
   ### Sample Call:
 
-$('form').submit('.submit', event => {
+```$('form').submit('.submit', event => {
       event.preventDefault();
       let hold = $('.js-query').val();
       store.youtubeData.prevPageToken = undefined;
       store.youtubeData.pageToken = undefined;
       $('.slides').html('');
-      $('.js-fewer').hide();
+      $('.js-fewer').hide();```
 
       API.getWiki(hold, response => {
         addWikiToStore(response);
@@ -26,9 +26,9 @@ $('form').submit('.submit', event => {
       
  #### API.getWiki is defined as:
  
-   let wikiEnpoint = 'https://www.wikipedia.org/w/api.php?callback=?';
+   `let wikiEnpoint = 'https://www.wikipedia.org/w/api.php?callback=?';`
  
-   const getWiki = function(searchTerm, callback) {
+   ```const getWiki = function(searchTerm, callback) {
    const wikiSettings = {
      action: 'opensearch',
      format: 'json',
@@ -36,7 +36,7 @@ $('form').submit('.submit', event => {
     search: searchTerm
    }
     $.getJSON(wikiEnpoint, wikiSettings, callback);
-  };
+  };```
 
 ### Skills Used:
   1. Semantic HTML
