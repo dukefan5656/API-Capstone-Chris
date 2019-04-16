@@ -3,9 +3,13 @@
 This app utilizes several web APIs to collect data based on a search topic provided by the user. I made this app to be able to quickly collect
 information from the sites I most commonly go to when searching a topic. 
 
+![landing](https://user-images.githubusercontent.com/34799623/56173417-6d5f5c80-5fbb-11e9-95b7-b8ecade70c63.jpg)
+
 For example, if you use "Australia" as a search term, the next page will display Flikr images across the top header, the top 5 current Reddit
 posts about the topic, the most relevant headline for the Wiki page, and a YouTube video with the ability to scroll
 through hundreds of videos available based on the topic.
+
+![after-search](https://user-images.githubusercontent.com/34799623/56173413-6b959900-5fbb-11e9-80c3-a02d5fbc8554.jpg)
 
 Links on the page are available for each Reddit post, the Wiki page, the Channel of the current YouTube video, and the YouTube video itself. 
 
